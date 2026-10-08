@@ -1,3 +1,4 @@
+```python
 import json
 import os
 import unittest
@@ -49,7 +50,9 @@ class TestMLPipeline(unittest.TestCase):
         }])
 
         prediction = model.predict(sample)[0]
-        self.assertEqual(int(prediction), 1)
+
+        # INTENTIONAL FAILURE FOR CI DEMONSTRATION
+        self.assertEqual(int(prediction), 0)
 
     def test_low_performance_student(self):
         model = joblib.load("student_result_model.pkl")
@@ -67,3 +70,4 @@ class TestMLPipeline(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+```
