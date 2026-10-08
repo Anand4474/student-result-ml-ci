@@ -1,4 +1,3 @@
-```python
 import json
 import os
 import unittest
@@ -23,6 +22,7 @@ class TestMLPipeline(unittest.TestCase):
             metrics = json.load(file)
 
         accuracy = metrics["accuracy"]
+
         self.assertGreaterEqual(accuracy, 0.0)
         self.assertLessEqual(accuracy, 1.0)
 
@@ -37,6 +37,7 @@ class TestMLPipeline(unittest.TestCase):
         }])
 
         prediction = model.predict(sample)[0]
+
         self.assertIn(int(prediction), [0, 1])
 
     def test_high_performance_student(self):
@@ -51,8 +52,8 @@ class TestMLPipeline(unittest.TestCase):
 
         prediction = model.predict(sample)[0]
 
-        # INTENTIONAL FAILURE FOR CI DEMONSTRATION
-        self.assertEqual(int(prediction), 0)
+        # High-performance student should PASS
+        self.assertEqual(int(prediction), 1)
 
     def test_low_performance_student(self):
         model = joblib.load("student_result_model.pkl")
@@ -65,9 +66,10 @@ class TestMLPipeline(unittest.TestCase):
         }])
 
         prediction = model.predict(sample)[0]
+
+        # Low-performance student should FAIL
         self.assertEqual(int(prediction), 0)
 
 
 if __name__ == "__main__":
     unittest.main()
-```
