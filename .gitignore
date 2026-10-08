@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+*.pyc
+.idea/
+.vscode/
+
+metrics.json
+student_result_model.pkl
+student_results.csv
